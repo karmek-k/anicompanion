@@ -1,0 +1,7 @@
+{
+  "name": "anicompanion",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
