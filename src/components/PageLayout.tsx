@@ -1,5 +1,6 @@
 import {
   IonButtons,
+  IonContent,
   IonHeader,
   IonMenuButton,
   IonPage,
@@ -7,7 +8,12 @@ import {
   IonToolbar
 } from '@ionic/react';
 
-const Page: React.FC = () => {
+interface Props {
+  title: string;
+  children?: React.ReactNode;
+}
+
+const PageLayout: React.FC<Props> = props => {
   return (
     <IonPage>
       <IonHeader>
@@ -15,11 +21,12 @@ const Page: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>AniCompanion</IonTitle>
+          <IonTitle>{props.title}</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonContent>{props.children}</IonContent>
     </IonPage>
   );
 };
 
-export default Page;
+export default PageLayout;
