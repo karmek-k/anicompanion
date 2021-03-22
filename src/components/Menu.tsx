@@ -8,12 +8,16 @@ import {
 
 import './Menu.css';
 
-const Menu: React.FC = () => {
+interface Props {
+  title: string;
+}
+
+const Menu: React.FC<Props> = props => {
   return (
     <IonMenu contentId="main" type="overlay">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Menu</IonTitle>
+          <IonTitle>{props.title}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent></IonContent>
