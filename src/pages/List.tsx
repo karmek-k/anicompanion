@@ -1,15 +1,25 @@
 import { IonText } from '@ionic/react';
+import { useContext, useEffect, useState } from 'react';
 import PageLayout from '../components/PageLayout';
 
+import AniCompanionContext from '../Context';
+
 const List: React.FC = () => {
+  const [username, setUsername] = useState<string>('');
+
+  const { store } = useContext(AniCompanionContext);
+
+  useEffect(() => {
+    async function load() {
+      setUsername(await store.get('username'));
+    }
+
+    load();
+  });
+
   return (
     <PageLayout title="List">
-      <IonText>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-        illum magni sequi, quo odio, laborum placeat accusantium aliquid ratione
-        nemo assumenda mollitia similique iste quaerat? Animi reprehenderit
-        natus laboriosam fugiat.
-      </IonText>
+      <IonText>Your name is {username}</IonText>
     </PageLayout>
   );
 };
