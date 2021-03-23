@@ -5,6 +5,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import List from './pages/List';
+import Start from './pages/Start';
 import AniCompanionContext from './Context';
 
 /* Core CSS required for Ionic components to work properly */
@@ -53,7 +54,7 @@ const App: React.FC = () => {
           <IonSplitPane contentId="main">
             <Menu title="AniCompanion" />
             <IonRouterOutlet id="main">
-              {/* <Route path="/" exact component={Start} /> */}
+              <Route path="/" exact component={Start} />
               <Route path="/list" component={List} />
             </IonRouterOutlet>
           </IonSplitPane>
