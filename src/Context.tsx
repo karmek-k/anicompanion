@@ -5,4 +5,4 @@ export interface ContextValues {
   store: Storage;
 }
 
-export default React.createContext<ContextValues | null>(null);
+export default React.createContext<ContextValues>({ store: new Storage() });
