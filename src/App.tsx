@@ -3,6 +3,7 @@ import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { Storage } from '@ionic/storage';
 import { IonReactRouter } from '@ionic/react-router';
 import { Route } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Menu from './components/Menu';
 import List from './pages/List';
 import Start from './pages/Start';
@@ -27,6 +28,11 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 // import './theme/variables.css';
 
+const apolloClient = new ApolloClient({
+  uri: 'https://graphql.anilist.co',
+  cache: new InMemoryCache()
+});
+
 const App: React.FC = () => {
   const [store, setStore] = useState<Storage>(new Storage());
 
@@ -49,17 +55,19 @@ const App: React.FC = () => {
 
   return (
     <AniCompanionContext.Provider value={{ store }}>
-      <IonApp>
-        <IonReactRouter>
-          <IonSplitPane contentId="main">
-            <Menu title="AniCompanion" />
-            <IonRouterOutlet id="main">
-              <Route path="/" exact component={Start} />
-              <Route path="/list" component={List} />
-            </IonRouterOutlet>
-          </IonSplitPane>
-        </IonReactRouter>
-      </IonApp>
+      <ApolloProvider client={apolloClient}>
+        <IonApp>
+          <IonReactRouter>
+            <IonSplitPane contentId="main">
+              <Menu title="AniCompanion" />
+              <IonRouterOutlet id="main">
+                <Route path="/" exact component={Start} />
+                <Route path="/list" component={List} />
+              </IonRouterOutlet>
+            </IonSplitPane>
+          </IonReactRouter>
+        </IonApp>
+      </ApolloProvider>
     </AniCompanionContext.Provider>
   );
 };
