@@ -35,13 +35,17 @@ const apolloClient = new ApolloClient({
 
 const App: React.FC = () => {
   const [store, setStore] = useState<Storage>(new Storage());
+  const [username, setUsername] = useState<string>('');
 
   const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     async function load() {
       const loadedStore = await store.create();
+      const loadedUsername = await loadedStore.get('username');
+
       setStore(loadedStore);
+      setUsername(loadedUsername || '');
 
       setLoaded(true);
     }
@@ -54,7 +58,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <AniCompanionContext.Provider value={{ store }}>
+    <AniCompanionContext.Provider value={{ store, username }}>
       <ApolloProvider client={apolloClient}>
         <IonApp>
           <IonReactRouter>
