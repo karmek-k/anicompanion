@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
-import { Storage } from '@ionic/storage';
 import { IonReactRouter } from '@ionic/react-router';
 import { Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
@@ -8,6 +7,7 @@ import Menu from './components/Menu';
 import List from './pages/List';
 import Start from './pages/Start';
 import AniCompanionContext from './Context';
+import { getFromStorage } from './utils/storage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -34,31 +34,18 @@ const apolloClient = new ApolloClient({
 });
 
 const App: React.FC = () => {
-  const [store, setStore] = useState<Storage>(new Storage());
   const [username, setUsername] = useState<string>('');
 
-  const [loaded, setLoaded] = useState<boolean>(false);
-
   useEffect(() => {
-    async function load() {
-      const loadedStore = await store.create();
-      const loadedUsername = await loadedStore.get('username');
-
-      setStore(loadedStore);
-      setUsername(loadedUsername || '');
-
-      setLoaded(true);
+    async function loadUsername() {
+      setUsername((await getFromStorage('username')) ?? '');
     }
 
-    load();
-  }, [store]);
-
-  if (!loaded) {
-    return <></>;
-  }
+    loadUsername();
+  }, []);
 
   return (
-    <AniCompanionContext.Provider value={{ store, username }}>
+    <AniCompanionContext.Provider value={{ username }}>
       <ApolloProvider client={apolloClient}>
         <IonApp>
           <IonReactRouter>
