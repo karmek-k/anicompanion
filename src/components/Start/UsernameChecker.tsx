@@ -4,17 +4,18 @@ import { IonSpinner, IonText } from '@ionic/react';
 
 interface Props {
   username: string;
+  onCorrect: (username: string) => void;
 }
 
 const userIdQuery = gql`
   query User($username: String!) {
     User(name: $username) {
-      id
+      name
     }
   }
 `;
 
-const UsernameChecker: React.FC<Props> = ({ username }) => {
+const UsernameChecker: React.FC<Props> = ({ username, onCorrect }) => {
   const { data, loading, error } = useQuery(userIdQuery, {
     variables: { username }
   });
@@ -31,11 +32,8 @@ const UsernameChecker: React.FC<Props> = ({ username }) => {
     return <IonText color="danger">Error: {error.message}</IonText>;
   }
 
-  return (
-    <IonText>
-      Hello {username}! Your ID is {data.User.id}
-    </IonText>
-  );
+  onCorrect(data.User.name);
+  return null;
 };
 
 export default UsernameChecker;
