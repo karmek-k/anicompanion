@@ -1,12 +1,12 @@
 import { IonButton, IonInput, IonItem } from '@ionic/react';
 import React, { useState } from 'react';
-import { NameInputData } from '../../pages/Start';
+import { UsernameInputData } from '../../pages/Start';
 
 interface Props {
-  callback: (data: NameInputData) => void;
+  callback: (data: UsernameInputData) => void;
 }
 
-const NameInput: React.FC<Props> = props => {
+const UsernameInput: React.FC<Props> = props => {
   const [inputValue, setInputValue] = useState<string>('');
 
   return (
@@ -23,4 +23,4 @@ const NameInput: React.FC<Props> = props => {
   );
 };
 
-export default NameInput;
+export default UsernameInput;

@@ -1,18 +1,24 @@
 import { IonContent, IonPage } from '@ionic/react';
-import React from 'react';
-import NameInput from '../components/Start/NameInput';
+import React, { useState } from 'react';
+import UsernameChecker from '../components/Start/UsernameChecker';
+import UsernameInput from '../components/Start/UsernameInput';
 
-export interface NameInputData {
+export interface UsernameInputData {
   username: string;
 }
 
 const Start: React.FC = () => {
-  const inputCallback = (data: NameInputData) => {};
+  const [checking, setChecking] = useState<boolean>(false);
+
+  const inputCallback = (data: UsernameInputData) => {
+    setChecking(true);
+  };
 
   return (
     <IonPage>
       <IonContent>
-        <NameInput callback={inputCallback} />
+        <UsernameInput callback={inputCallback} />
+        {checking && <UsernameChecker />}
       </IonContent>
     </IonPage>
   );
