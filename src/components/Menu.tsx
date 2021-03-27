@@ -1,17 +1,16 @@
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import {
   IonContent,
   IonHeader,
-  IonImg,
   IonMenu,
   IonTitle,
   IonToolbar
 } from '@ionic/react';
-import gql from 'graphql-tag';
 import { useContext } from 'react';
 import Context from '../Context';
 
 import './Menu.css';
+import MenuUserData from './_menu/MenuUserData';
 
 interface Props {
   title: string;
@@ -44,7 +43,7 @@ const Menu: React.FC<Props> = props => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {!loading && <IonImg src={data.User.avatar.medium} />}
+        {!loading && <MenuUserData userData={data.User} />}
       </IonContent>
     </IonMenu>
   );
