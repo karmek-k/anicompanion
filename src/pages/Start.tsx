@@ -1,5 +1,5 @@
 import { IonContent, IonPage } from '@ionic/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UsernameChecker from '../components/Start/UsernameChecker';
 import UsernameInput from '../components/Start/UsernameInput';
 
@@ -8,17 +8,20 @@ export interface UsernameInputData {
 }
 
 const Start: React.FC = () => {
-  const [checking, setChecking] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>('');
 
   const inputCallback = (data: UsernameInputData) => {
-    setChecking(true);
+    setUsername(data.username);
   };
+
+  // reload the component when the username changes
+  useEffect(() => {}, [username]);
 
   return (
     <IonPage>
       <IonContent>
         <UsernameInput callback={inputCallback} />
-        {checking && <UsernameChecker />}
+        {username && <UsernameChecker username={username} />}
       </IonContent>
     </IonPage>
   );
