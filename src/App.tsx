@@ -1,8 +1,13 @@
+import React, { useEffect, useState } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Menu from './components/Menu';
-import Page from './pages/Page';
+import List from './pages/List';
+import Start from './pages/Start';
+import AniCompanionContext from './Context';
+import { getFromStorage } from './utils/storage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -23,23 +28,38 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 // import './theme/variables.css';
 
+const apolloClient = new ApolloClient({
+  uri: 'https://graphql.anilist.co',
+  cache: new InMemoryCache()
+});
+
 const App: React.FC = () => {
+  const [username, setUsername] = useState<string>('');
+
+  useEffect(() => {
+    async function loadUsername() {
+      setUsername((await getFromStorage('username')) ?? '');
+    }
+
+    loadUsername();
+  }, []);
+
   return (
-    <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/" exact={true}>
-              <Redirect to="/page/Inbox" />
-            </Route>
-            <Route path="/page/:name" exact={true}>
-              <Page />
-            </Route>
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
-    </IonApp>
+    <AniCompanionContext.Provider value={{ username, setUsername }}>
+      <ApolloProvider client={apolloClient}>
+        <IonApp>
+          <IonReactRouter>
+            <IonSplitPane contentId="main">
+              <Menu title="AniCompanion" />
+              <IonRouterOutlet id="main">
+                <Route path="/" exact component={Start} />
+                <Route path="/list" component={List} />
+              </IonRouterOutlet>
+            </IonSplitPane>
+          </IonReactRouter>
+        </IonApp>
+      </ApolloProvider>
+    </AniCompanionContext.Provider>
   );
 };
 
