@@ -34,18 +34,18 @@ const apolloClient = new ApolloClient({
 });
 
 const App: React.FC = () => {
-  const [username, setUsername] = useState<string>('');
+  const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
-    async function loadUsername() {
-      setUsername((await getFromStorage('username')) ?? '');
+    async function loaduserId() {
+      setUserId((await getFromStorage('userId')) ?? 0);
     }
 
-    loadUsername();
+    loaduserId();
   }, []);
 
   return (
-    <AniCompanionContext.Provider value={{ username, setUsername }}>
+    <AniCompanionContext.Provider value={{ userId, setUserId }}>
       <ApolloProvider client={apolloClient}>
         <IonApp>
           <IonReactRouter>

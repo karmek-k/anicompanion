@@ -12,13 +12,13 @@ export interface UsernameInputData {
 
 const Start: React.FC = () => {
   const [username, setUsername] = useState<string>('');
-  const [usernameLoaded, setUsernameLoaded] = useState<boolean>(false);
+  const [userIdLoaded, setUserIdLoaded] = useState<boolean>(false);
 
   const ctxData = useContext(Context);
 
   //
   // username - text in the input field
-  // ctxData.username - text in context's username key
+  // ctxData.userId - number in context's userId key
   //
 
   // when the submit button is clicked
@@ -27,26 +27,26 @@ const Start: React.FC = () => {
   };
 
   // when UsernameChecker verifies the username
-  // and it is correct
-  const correctUsernameCallback = (username: string) => {
-    ctxData.setUsername(username);
+  // and it is correct, the user ID is passed
+  const correctUsernameCallback = (userId: number) => {
+    ctxData.setUserId(userId);
   };
 
-  // reload the component when the username changes
+  // reload the component when the userId changes
   useEffect(() => {
-    async function saveUsername(username: string) {
-      await saveToStorage('username', username);
-      setUsernameLoaded(true);
+    async function saveUserId(userId: number) {
+      await saveToStorage('user_id', userId);
+      setUserIdLoaded(true);
     }
 
-    if (ctxData.username) {
-      saveUsername(ctxData.username);
+    if (ctxData.userId) {
+      saveUserId(ctxData.userId);
     }
-  }, [ctxData.username]);
+  }, [ctxData.userId]);
 
-  // only redirect when the user has specified an existing username
-  // OR when a username exists in app context
-  if (usernameLoaded) {
+  // only redirect when the user has specified an existing userId
+  // OR when a userId exists in app context
+  if (userIdLoaded) {
     return <Redirect to="/list" />;
   }
 

@@ -5,11 +5,11 @@ import PageLayout from '../components/PageLayout';
 import AniCompanionContext from '../Context';
 
 const List: React.FC = () => {
-  const { username } = useContext(AniCompanionContext);
+  const { userId } = useContext(AniCompanionContext);
 
   return (
     <PageLayout title="List">
-      <IonText>Your name is {username}</IonText>
+      <IonText>Your ID is {userId}</IonText>
     </PageLayout>
   );
 };
