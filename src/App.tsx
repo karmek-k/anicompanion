@@ -45,7 +45,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <AniCompanionContext.Provider value={{ username }}>
+    <AniCompanionContext.Provider value={{ username, setUsername }}>
       <ApolloProvider client={apolloClient}>
         <IonApp>
           <IonReactRouter>
