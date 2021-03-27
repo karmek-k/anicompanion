@@ -37,11 +37,11 @@ const App: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
-    async function loaduserId() {
-      setUserId((await getFromStorage('userId')) ?? 0);
+    async function loadUserId() {
+      setUserId((await getFromStorage('user_id')) ?? 0);
     }
 
-    loaduserId();
+    loadUserId();
   }, []);
 
   return (
