@@ -24,6 +24,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
+import Detail from './pages/Detail';
 
 /* Theme variables */
 // import './theme/variables.css';
@@ -50,10 +51,11 @@ const App: React.FC = () => {
         <IonApp>
           <IonReactRouter>
             <IonSplitPane contentId="main">
-              <Menu title="AniCompanion" />
+              {userId > 0 && <Menu title="AniCompanion" />}
               <IonRouterOutlet id="main">
                 <Route path="/" exact component={Start} />
                 <Route path="/list/:type/:status" component={List} />
+                <Route path="/detail/:mediaId" component={Detail} />
               </IonRouterOutlet>
             </IonSplitPane>
           </IonReactRouter>

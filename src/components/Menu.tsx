@@ -36,6 +36,10 @@ const Menu: React.FC<Props> = props => {
     variables: { id: userId }
   });
 
+  if (!data) {
+    return null;
+  }
+
   return (
     <IonMenu contentId="main" type="overlay">
       <IonHeader>

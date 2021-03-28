@@ -17,6 +17,7 @@ const mediaListQuery = gql`
       lists {
         entries {
           media {
+            id
             title {
               userPreferred
             }
