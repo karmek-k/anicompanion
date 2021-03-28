@@ -2,6 +2,7 @@ import { IonItem, IonThumbnail, IonImg, IonLabel } from '@ionic/react';
 import React from 'react';
 
 export interface Media {
+  id: number;
   title: { userPreferred: string };
   coverImage: { medium: string };
 }
@@ -16,7 +17,7 @@ interface Props {
 
 const MediaListItem: React.FC<Props> = ({ entry }) => {
   return (
-    <IonItem>
+    <IonItem routerLink={`/detail/${entry.media.id}`}>
       <IonThumbnail>
         <IonImg src={entry.media.coverImage.medium} />
       </IonThumbnail>
