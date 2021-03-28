@@ -47,7 +47,7 @@ const Start: React.FC = () => {
   // only redirect when the user has specified an existing userId
   // OR when a userId exists in app context
   if (userIdLoaded) {
-    return <Redirect to="/list" />;
+    return <Redirect to="/list/anime/current" />;
   }
 
   return (
