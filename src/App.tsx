@@ -51,7 +51,7 @@ const App: React.FC = () => {
         <IonApp>
           <IonReactRouter>
             <IonSplitPane contentId="main">
-              <Menu title="AniCompanion" />
+              {userId > 0 && <Menu title="AniCompanion" />}
               <IonRouterOutlet id="main">
                 <Route path="/" exact component={Start} />
                 <Route path="/list/:type/:status" component={List} />
