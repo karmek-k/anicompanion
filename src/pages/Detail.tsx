@@ -9,6 +9,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
+import MediaCard from '../components/Detail/MediaCard';
 import PageLayout from '../components/PageLayout';
 import { replaceBr } from '../utils/misc';
 
@@ -53,13 +54,7 @@ const Detail: React.FC<PageProps> = ({ match }) => {
 
   return (
     <PageLayout title="Detail">
-      <IonCard>
-        <IonImg src={data.Media.coverImage.large} alt="Cover image" />
-        <IonCardTitle>{data.Media.title.userPreferred}</IonCardTitle>
-        <IonCardContent style={{ whiteSpace: 'pre-line' }}>
-          {replaceBr(data.Media.description, '\n')}
-        </IonCardContent>
-      </IonCard>
+      <MediaCard media={data.Media} />
     </PageLayout>
   );
 };
