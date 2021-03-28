@@ -1,8 +1,16 @@
 import { gql, useQuery } from '@apollo/client';
-import { IonSpinner, IonText } from '@ionic/react';
+import {
+  IonCard,
+  IonCardContent,
+  IonCardTitle,
+  IonImg,
+  IonSpinner,
+  IonText
+} from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import PageLayout from '../components/PageLayout';
+import { replaceBr } from '../utils/misc';
 
 type PagePropsType = { mediaId: string };
 
@@ -13,6 +21,10 @@ const mediaDetailQuery = gql`
     Media(id: $id) {
       title {
         userPreferred
+      }
+      description
+      coverImage {
+        large
       }
     }
   }
@@ -40,7 +52,15 @@ const Detail: React.FC<PageProps> = ({ match }) => {
   }
 
   return (
-    <PageLayout title="Detail">{data.Media.title.userPreferred}</PageLayout>
+    <PageLayout title="Detail">
+      <IonCard>
+        <IonImg src={data.Media.coverImage.large} alt="Cover image" />
+        <IonCardTitle>{data.Media.title.userPreferred}</IonCardTitle>
+        <IonCardContent style={{ whiteSpace: 'pre-line' }}>
+          {replaceBr(data.Media.description, '\n')}
+        </IonCardContent>
+      </IonCard>
+    </PageLayout>
   );
 };
 
