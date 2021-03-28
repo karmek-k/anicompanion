@@ -53,7 +53,7 @@ const App: React.FC = () => {
               <Menu title="AniCompanion" />
               <IonRouterOutlet id="main">
                 <Route path="/" exact component={Start} />
-                <Route path="/list" component={List} />
+                <Route path="/list/:type/:status" component={List} />
               </IonRouterOutlet>
             </IonSplitPane>
           </IonReactRouter>
