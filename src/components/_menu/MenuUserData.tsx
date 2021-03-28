@@ -27,12 +27,12 @@ const MenuUserData: React.FC<Props> = ({ userData }) => {
         <IonLabel>{userData.name}</IonLabel>
       </IonItem>
 
-      <IonItem>
+      <IonItem routerLink="/list/anime/current">
         <IonIcon name="film-outline" />
         Anime
       </IonItem>
 
-      <IonItem>
+      <IonItem routerLink="/list/manga/current">
         <IonIcon name="book-outline" />
         Manga
       </IonItem>

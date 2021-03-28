@@ -3,6 +3,7 @@ import {
   IonContent,
   IonHeader,
   IonMenu,
+  IonSpinner,
   IonTitle,
   IonToolbar
 } from '@ionic/react';
@@ -43,7 +44,7 @@ const Menu: React.FC<Props> = props => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {!loading && <MenuUserData userData={data.User} />}
+        {loading ? <IonSpinner /> : <MenuUserData userData={data.User} />}
       </IonContent>
     </IonMenu>
   );
