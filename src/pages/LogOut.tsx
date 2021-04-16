@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react';
+import { Redirect } from 'react-router';
 import context from '../Context';
 import { removeFromStorage } from '../utils/storage';
 
 const LogOut: React.FC = () => {
-  const { setUserId } = useContext(context);
+  const { setUserId, userId } = useContext(context);
 
   useEffect(() => {
     async function logOut() {
@@ -13,6 +14,10 @@ const LogOut: React.FC = () => {
 
     logOut();
   });
+
+  if (userId === 0) {
+    return <Redirect to="/" push />;
+  }
 
   return null;
 };
