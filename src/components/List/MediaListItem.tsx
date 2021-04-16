@@ -18,7 +18,7 @@ interface Props {
 const MediaListItem: React.FC<Props> = ({ entry }) => {
   return (
     <IonItem routerLink={`/detail/${entry.media.id}`}>
-      <IonThumbnail>
+      <IonThumbnail slot="start">
         <IonImg src={entry.media.coverImage.medium} />
       </IonThumbnail>
       <IonLabel>{entry.media.title.userPreferred}</IonLabel>

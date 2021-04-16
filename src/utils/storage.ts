@@ -13,3 +13,9 @@ export async function saveToStorage(key: string, value: any): Promise<void> {
 
   return await storage.set(key, value);
 }
+
+export async function removeFromStorage(key: string): Promise<void> {
+  await storage.create();
+
+  return await storage.remove(key);
+}

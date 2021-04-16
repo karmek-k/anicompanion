@@ -6,6 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Menu from './components/Menu';
 import List from './pages/List';
 import Start from './pages/Start';
+import LogOut from './pages/LogOut';
 import AniCompanionContext from './Context';
 import { getFromStorage } from './utils/storage';
 
@@ -56,6 +57,7 @@ const App: React.FC = () => {
                 <Route path="/" exact component={Start} />
                 <Route path="/list/:type/:status" component={List} />
                 <Route path="/detail/:mediaId" component={Detail} />
+                <Route path="/logout" component={LogOut} />
               </IonRouterOutlet>
             </IonSplitPane>
           </IonReactRouter>
