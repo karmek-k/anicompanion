@@ -1,4 +1,11 @@
-import { IonImg, IonItem, IonLabel, IonList, IonThumbnail } from '@ionic/react';
+import {
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonText,
+  IonThumbnail
+} from '@ionic/react';
 import React from 'react';
 
 interface UserData {
@@ -29,6 +36,10 @@ const MenuUserData: React.FC<Props> = ({ userData }) => {
       <IonItem routerLink="/list/manga/current">
         {/* <IonIcon name="book-outline" /> */}
         Manga
+      </IonItem>
+
+      <IonItem routerLink="/logout">
+        <IonText color="danger">Log out</IonText>
       </IonItem>
     </IonList>
   );
