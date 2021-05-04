@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.15",
+    "@capacitor/android": "^2.4.7",
     "@capacitor/core": "2.4.7",
     "@ionic/react": "^5.6.4",
     "@ionic/react-router": "^5.6.4",
@@ -66,5 +67,5 @@
   "devDependencies": {
     "@capacitor/cli": "2.4.7"
   },
-  "description": "An Ionic project"
+  "description": "Unofficial mobile app for AniList"
 }
