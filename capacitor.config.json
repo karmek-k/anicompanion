@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "anicompanion",
+  "appId": "pl.karmekk.anicompanion",
+  "appName": "AniCompanion",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
@@ -9,5 +9,6 @@
       "launchShowDuration": 0
     }
   },
+  "linuxAndroidStudioPath": "/usr/bin/android-studio",
   "cordova": {}
 }
