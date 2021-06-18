@@ -1,21 +1,25 @@
 import { Storage } from '@ionic/storage';
 
-const storage = new Storage();
+class NativeStorage {
+  private storage!: Storage;
 
-export async function getFromStorage(key: string): Promise<any> {
-  await storage.create();
+  constructor() {
+    new Storage().create().then(s => {
+      this.storage = s;
+    });
+  }
 
-  return await storage.get(key);
+  async get(key: string): Promise<any> {
+    return await this.storage.get(key);
+  }
+
+  async save(key: string, value: any): Promise<void> {
+    return await this.storage.set(key, value);
+  }
+
+  async remove(key: string): Promise<void> {
+    return await this.storage.remove(key);
+  }
 }
 
-export async function saveToStorage(key: string, value: any): Promise<void> {
-  await storage.create();
-
-  return await storage.set(key, value);
-}
-
-export async function removeFromStorage(key: string): Promise<void> {
-  await storage.create();
-
-  return await storage.remove(key);
-}
+export default new NativeStorage();
