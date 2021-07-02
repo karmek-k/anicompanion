@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import UsernameChecker from '../components/Start/UsernameChecker';
 import UsernameInput from '../components/Start/UsernameInput';
 import Context from '../Context';
-import { saveToStorage } from '../utils/storage';
+import storage from '../utils/storage';
 
 export interface UsernameInputData {
   username: string;
@@ -35,7 +35,7 @@ const Start: React.FC = () => {
   // reload the component when the userId changes
   useEffect(() => {
     async function saveUserId(userId: number) {
-      await saveToStorage('user_id', userId);
+      await storage.save('user_id', userId);
       setUserIdLoaded(true);
     }
 

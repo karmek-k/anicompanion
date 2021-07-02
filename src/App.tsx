@@ -8,7 +8,7 @@ import List from './pages/List';
 import Start from './pages/Start';
 import LogOut from './pages/LogOut';
 import AniCompanionContext from './Context';
-import { getFromStorage } from './utils/storage';
+import storage from './utils/storage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -40,7 +40,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     async function loadUserId() {
-      setUserId((await getFromStorage('user_id')) ?? 0);
+      setUserId((await storage.get('user_id')) ?? 0);
     }
 
     loadUserId();
